@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Score Counter</h1>
+    <h2 id="score">5</h2>
+    <button id="plusButton">+</button>
+    <button id="minusButton">-</button>
+    <script>
+      // keep track of the score
+      var scoreElement = document.getElementById("score");
+      var score = parseInt(scoreElement.textContent);
+      var minusButton = document.getElementById("minusButton");
+
+      // function to increase the score
+      function increaseScore() {
+        // increase score by one
+        score = score + 1;
+
+        if (score > 0) {
+          minusButton.disabled = false;
+        }
+
+        if (score > 0 && score < 10) {
+          scoreElement.style.color = "black";
+        } else if (score > 9) {
+          scoreElement.style.color = "green";
+        }
+
+        // update the page
+        scoreElement.textContent = score;
+      }
+
+      // -> add to button with +
+      document
+        .getElementById("plusButton")
+        .addEventListener("click", increaseScore);
+
+      function decreaseScore() {
+        // increase score by one
+        score = score - 1;
+
+        if (score === 0) {
+          minusButton.disabled = true;
+          scoreElement.style.color = "red";
+        } else if (score > 0 && score < 10) {
+          scoreElement.style.color = "black";
+        }
+
+        // update the page
+        scoreElement.textContent = score;
+      }
+
+      // -> add to button with +
+
+      minusButton.addEventListener("click", decreaseScore);
+
+      // function to decrease the score -> add to button with -
+
+      // 1.
+      // - We need to keep of score (in the variable)
+      // - And we update the score (under the hood)
+
+      // 2.
+      // - Update the page itself score
+      // - Update "related" things, disabled any colors etc.
+
+      // Vanilla -> imperative programming
+      // step 1, update score
+      // step 2, is the score 0? disable the button
+      // steo 3, us the score 0? give a red color
+      // ...
+      // last step, update the counter
+
+      // 1 & 2 can be done in the same function!
+    </script>
+  </body>
+</html>
